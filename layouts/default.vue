@@ -18,7 +18,7 @@
 <style scoped>
 .container1::before{
     content:"";
-    background-image: url('images/girlTrain.jpg');
+    background-image: url('/images/girlTrain.jpg');
     background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
