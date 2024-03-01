@@ -1,16 +1,18 @@
 <template>
-    <Widget>
-        <div class="w-full bg-gray-100/75 flex h-[20vh] py-2">
+    <Widget title="Weather & Time">
+        <div class="w-full bg-gray-100/75 flex h-[25vh] py-2">
             <Icon :icon="weather.icon" class="w-1/3 h-full" />
             <div class="h-full w-0.5 bg-gray-400/50"></div>
-            <div class="w-2/3 flex flex-col gap-4 font-semibold px-4 leading-5 text-slate-700">
+            <div class="w-2/3 flex flex-col font-semibold px-4 leading-5 text-slate-700">
                 <div class="flex flex-col justify-center text-sm">
                     <h2>Manila, Philippines</h2>
                     <h2>{{ getFormattedDate() }}</h2>
                     <h2 class="font-bold text-slate-900">{{ getDayOfWeek() }}</h2>
                 </div>
 
-                <h1 class="text-center text-5xl font-bold">{{ time }}</h1>
+                <h1 class="text-center flex items-end justify-center gap-2 text-5xl font-bold my-auto">
+                    {{ time }} <span class="text-2xl">{{ timeFix }}</span>
+                </h1>
             </div>
         </div>
     </Widget>
@@ -23,6 +25,7 @@ import { Icon } from '@iconify/vue';
 const weather = ref({}); 
 const currentDate = new Date();
 const time = ref('');
+const timeFix = ref('am');
 
 onMounted(() => {
     updateTime();
@@ -117,7 +120,8 @@ function updateTime() {
     const minutes = currentDate.getMinutes();
     const amPm = hours >= 12 ? 'PM' : 'AM';
     const displayHours = hours % 12 || 12;
-    time.value = `${displayHours}:${minutes < 10 ? '0' + minutes : minutes} ${amPm}`;
+    time.value = `${displayHours}:${minutes < 10 ? '0' + minutes : minutes}`;
+    timeFix.value = amPm;
 }
 
 
