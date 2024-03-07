@@ -1,17 +1,15 @@
 <template>
-    <Widget title="Stopwatch">
-      <div class="w-full bg-gray-100/75 flex h-[25vh]">
-        <div class="px-5 text-center text-5xl font-semibold flex flex-col gap-4 justify-center items-center w-full h-full">
-          <div>
-            <h2>{{ formattedTime }}</h2>
-          </div>
-  
-          <div @click="toggleStopwatch" class="rounded-full bg-sky-600 p-2 cursor-pointer">
-            <Icon :icon="isPlaying ? 'ph:pause-fill' : 'ph:play-fill'" class="h-10 w-10 text-black dark:text-white" />
-          </div>
+    <div class="w-full flex h-full text-white">
+      <div class="px-5 text-center text-5xl font-semibold flex flex-col gap-4 justify-center items-center w-full">
+        <div>
+          <h2>{{ formattedTime }}</h2>
+        </div>
+
+        <div @click="toggleStopwatch" class="rounded-full bg-sky-600 p-2 cursor-pointer">
+          <Icon :icon="isPlaying ? 'ph:pause-fill' : 'ph:play-fill'" class="h-10 w-10 text-white" />
         </div>
       </div>
-    </Widget>
+    </div>
   </template>
   
   <script setup>

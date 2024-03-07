@@ -1,21 +1,10 @@
 <template>
-    <Widget title="Weather & Time">
-        <div class="w-full bg-gray-100/75 flex h-[25vh] py-2">
-            <Icon :icon="weather.icon" class="w-1/3 h-full" />
-            <div class="h-full w-0.5 bg-gray-400/50"></div>
-            <div class="w-2/3 flex flex-col font-semibold px-4 leading-5 text-slate-700">
-                <div class="flex flex-col justify-center text-sm">
-                    <h2>Manila, Philippines</h2>
-                    <h2>{{ getFormattedDate() }}</h2>
-                    <h2 class="font-bold text-slate-900">{{ getDayOfWeek() }}</h2>
-                </div>
-
-                <h1 class="text-center flex items-end justify-center gap-2 text-5xl font-bold my-auto">
-                    {{ time }} <span class="text-2xl">{{ timeFix }}</span>
-                </h1>
-            </div>
+    <div>
+        <div class="font-normal flex items-center justify-center gap-2">
+            <Icon :icon="weather.icon" class="w-8 h-8" />
+            <h2 class="">{{ `${getWeatherDescription(weather.code)}.` }}</h2>
         </div>
-    </Widget>
+    </div>
 </template>
 
 <script setup>
@@ -23,14 +12,8 @@ import axios from 'axios';
 import { Icon } from '@iconify/vue';
 
 const weather = ref({}); 
-const currentDate = new Date();
-const time = ref('');
-const timeFix = ref('am');
 
 onMounted(() => {
-    updateTime();
-    setInterval(updateTime, 1000);
-
     const lastFetchTime = localStorage.getItem('lastFetchTime');
     const currentTime = new Date().getTime();
 
@@ -104,25 +87,51 @@ function getIcon(code, is_day) {
     }
 }
 
-function getDayOfWeek() {
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const dayIndex = currentDate.getDay();
-    return daysOfWeek[dayIndex];
+function getWeatherDescription(weatherCode) {
+    switch (weatherCode) {
+        case 0:
+            return "Clear sky";
+        case 1:
+        case 2:
+        case 3:
+            return "Mainly clear";
+        case 45:
+        case 48:
+            return "Fog and depositing rime fog";
+        case 51:
+        case 53:
+        case 55:
+            return "Drizzle: Light, moderate, and dense intensity";
+        case 56:
+        case 57:
+            return "Freezing Drizzle: Light and dense intensity";
+        case 61:
+        case 63:
+        case 65:
+            return "Rain: Slight, moderate and heavy intensity";
+        case 66:
+        case 67:
+            return "Freezing Rain: Light and heavy intensity";
+        case 71:
+        case 73:
+        case 75:
+            return "Snow fall: Slight, moderate, and heavy intensity";
+        case 77:
+            return "Snow grains";
+        case 80:
+        case 81:
+        case 82:
+            return "Rain showers: Slight, moderate, and violent";
+        case 85:
+        case 86:
+            return "Snow showers slight and heavy";
+        case 95:
+            return "Thunderstorm: Slight or moderate";
+        case 96:
+        case 99:
+            return "Thunderstorm with slight and heavy hail";
+        default:
+            return "Unknown weather code";
+    }
 }
-
-function getFormattedDate() {
-    const options = { month: 'short', day: 'numeric', year: 'numeric' };
-    return currentDate.toLocaleDateString('en-US', options);
-}
-
-function updateTime() {
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const amPm = hours >= 12 ? 'PM' : 'AM';
-    const displayHours = hours % 12 || 12;
-    time.value = `${displayHours}:${minutes < 10 ? '0' + minutes : minutes}`;
-    timeFix.value = amPm;
-}
-
-
 </script>

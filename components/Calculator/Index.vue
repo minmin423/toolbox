@@ -1,16 +1,14 @@
 <template>
-    <Widget title="Calculator">
-        <div class="bg-slate-400/95 px-2 font-semibold text-white w-full h-[55vh] py-2">
-            <div class="text-end py-8 px-4 border border-slate-500/25 w-full h-1/3">
-                <div class="text-5xl w-full overflow-x-auto overflow-y-hidden">{{ mainDisplay }}</div>
-                <div class="text-xl text-gray-200 h-6 flex items-center justify-end">{{ subDisplay }}</div>
-            </div>
-
-            <div class="grid grid-cols-4 grid-rows-5 text-3xl h-2/3">
-                <CalcButton v-for="button in allButtons" :key="button" @handleClick="handleButtonClick(button)" :button="button"></CalcButton>
-            </div>
+    <div class="p-2 font-semibold text-white w-full h-full">
+        <div class="text-end py-8 px-4 border border-slate-500/25 w-full h-fit">
+            <div class="text-5xl w-full overflow-x-auto overflow-y-hidden">{{ mainDisplay }}</div>
+            <div class="text-xl text-gray-200 h-6 flex items-center justify-end">{{ subDisplay }}</div>
         </div>
-    </Widget>
+
+        <div class="grid grid-cols-4 grid-rows-5 text-3xl h-2/3">
+            <CalcButton v-for="button in allButtons" :key="button" @handleClick="handleButtonClick(button)" :button="button"></CalcButton>
+        </div>
+    </div>
 </template>
 
 <script setup>
