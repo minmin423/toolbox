@@ -48,7 +48,7 @@ import { Icon } from '@iconify/vue';
 const userName = useUserName();
 const showSettings = ref(false);
 const showApps = ref(false);
-const showModal = ref(true);
+const showModal = ref(false);
 const modalApp = ref('');
 
 onMounted(() => {
