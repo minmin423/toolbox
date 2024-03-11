@@ -1,8 +1,8 @@
 <template>
     <div class="flex flex-col justify-center items-center text-white">
         <div class="w-fit flex flex-col justify-center items-center">
-            <h1 class="text-[10vmin] font-light">{{ time }}</h1> 
-            <h2 class="text-[2.5vmin] -mt-3 md:-mt-6">{{ `${getDayOfWeek()}, ${getFormattedDate()}` }}</h2>
+            <h1 class="text-6xl lg:text-[100px] font-light">{{ time }}</h1> 
+            <h2 class="text-base">{{ `${getDayOfWeek()}, ${getFormattedDate()}` }}</h2>
         </div>
     </div>
 </template>

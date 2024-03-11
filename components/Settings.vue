@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-screen fixed top-0 flex justify-end">
-        <div class="h-full bg-slate-700 w-[35vw] flex flex-col text-white">
-            <div class="flex items-center justify-end w-full pr-10 h-16">
+        <div class="h-full bg-slate-700 w-[90vw] lg:w-[35vw] flex flex-col text-white">
+            <div class="flex items-center justify-end w-full px-2 lg:px-10 h-16">
                 <Icon @click="$emit('handleClick')" icon="tabler:x" class="w-8 h-8 text-white cursor-pointer" />
             </div>
 

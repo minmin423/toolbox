@@ -1,7 +1,7 @@
 <template>
-    <div class="min-h-screen w-full bg-[#445469] font-roboto flex flex-col justify-between">
+    <div class="min-h-screen w-full bg-[#445469] font-roboto flex flex-col justify-between overflow-hidden">
         <div>
-            <nav class="text-white font-semibold flex justify-between items-center px-10">
+            <nav class="text-white font-semibold flex justify-between items-center px-2 lg:px-10">
                 <Greeting />
                 
                 <div class="flex items-center gap-2">
@@ -16,20 +16,24 @@
                 <div class="flex flex-col gap-10 items-center justify-center">
                     <Time />
 
-                    <Search />
+                    <div class="w-full lg:w-2/3 px-2">
+                        <Search />
+                    </div>
                 </div>
             </main>
         </div>
 
         <div class="h-full">
             <div class="flex justify-center items-start h-full">
-                <Icon @click="showApps = !showApps" icon="material-symbols:apps" class="h-16 w-16 text-white hover:text-gray-200 cursor-pointer" />
+                <Icon @click="showApps = !showApps" icon="mingcute:up-fill" class="h-16 w-16 text-white hover:text-gray-200 cursor-pointer" />
             </div>
 
-            <div v-if="showApps" class="flex justify-around bg-slate-500/50">
-                <AppTile @handleClick="handleAppOpen('Calculator')" icon="material-symbols:calculate" name="Calculator" />
-                <AppTile @handleClick="handleAppOpen('Stopwatch')" icon="mingcute:stopwatch-fill" name="Stopwatch" />
-            </div>
+            <Transition name="slide-fade-b">
+                <div v-if="showApps" class="flex justify-around bg-slate-500/50">
+                    <AppTile @handleClick="handleAppOpen('Calculator')" icon="material-symbols:calculate" name="Calculator" />
+                    <AppTile @handleClick="handleAppOpen('Stopwatch')" icon="mingcute:stopwatch-fill" name="Stopwatch" />
+                </div>
+            </Transition>
         </div>
 
         <Transition name="slide-fade">
@@ -84,6 +88,20 @@ function handleAppOpen(app) {
 .slide-fade-enter-from,
 .slide-fade-leave-to {
   transform: translateX(20px);
+  opacity: 0;
+}
+
+.slide-fade-b-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-b-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.slide-fade-b-enter-from,
+.slide-fade-b-leave-to {
+  transform: translateY(20px);
   opacity: 0;
 }
 </style>

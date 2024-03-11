@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-screen fixed bg-slate-950/50 flex justify-center items-center">
-        <div class="w-1/2 h-2/3 bg-slate-400 rounded-xl">
+        <div class="w-full mx-2 lg:w-1/2 h-2/3 bg-slate-400 rounded-xl">
             <div class="w-full flex justify-end p-2">
                 <Icon @click="$emit('handleClick')" icon="tabler:x" class="w-8 h-8 text-white cursor-pointer hover:text-gray-300" />
             </div>

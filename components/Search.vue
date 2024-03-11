@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center rounded-xl w-full lg:w-[50vw] bg-gray-800 h-12">
+    <div class="flex items-center rounded-xl w-full bg-gray-800 h-12">
         <input v-model="searchText" @keypress.enter="handleKeyPress" type="text" placeholder="Search Google..." class="pl-2 w-full h-full rounded-l-xl bg-white/0 focus:border-0 outline-none text-white">
 
         <div v-if="searchText !== ''" class="h-2/3 w-1 rounded-full bg-white/10"></div>
